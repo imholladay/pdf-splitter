@@ -73,6 +73,7 @@ do
      -dNOPAUSE -r300x300 \
      -dFirstPage=$currentPage \
      -dLastPage=$currentPage \
+     -dNODISPLAY \
      $inputfile
 
   # extract ALL the barcodes from currentPage.jpeg
