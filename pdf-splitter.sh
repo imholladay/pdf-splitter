@@ -69,6 +69,7 @@ do
   # use Ghostscript to extract the current page of the PDF-file to a single JPEG-file
 
   gs -o $tempdir/currentPage.jpeg \
+     -q \
      -sDEVICE=jpeg \
      -dNOPAUSE -r300x300 \
      -dFirstPage=$currentPage \
