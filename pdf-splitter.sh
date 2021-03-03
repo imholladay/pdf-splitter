@@ -51,7 +51,7 @@ regex=$2
 
 tempdir=$(mktemp -d "${TMPDIR:-/tmp/}$(basename $0).XXXXXXXXXXXX")
 cd $tempdir
-trap "rm -rf $tempdir" EXIT
+#trap "rm -rf $tempdir" EXIT
 
 totalpages=$(pdfinfo $inputfile | grep Pages | awk '{print $2}')
 echo "Inputfile '$inputfile' has $totalpages pages"
