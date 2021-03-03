@@ -51,7 +51,7 @@ regex=$2
 
 tempdir=$(mktemp -d "${TMPDIR:-/tmp/}$(basename $0).XXXXXXXXXXXX")
 cd $tempdir
-#trap "rm -rf $tempdir" EXIT
+trap "rm -rf $tempdir" EXIT
 
 totalpages=$(pdfinfo $inputfile | grep Pages | awk '{print $2}')
 echo "Inputfile '$inputfile' has $totalpages pages"
@@ -63,8 +63,8 @@ currentPage=1
 
 while [ $currentPage -lt $totalpages ]
 do
-  currentPage=$(($currentPage+1))
-  echo "currentPage: $currentPage"
+  #currentPage=$(($currentPage+1))
+  #echo "currentPage: $currentPage"
   
   # use Ghostscript to extract the current page of the PDF-file to a single JPEG-file
 
@@ -80,7 +80,8 @@ do
   # because the first extracted barcode might not be the one we are looking for
 
   barcodes="$(zbarimg --raw -q currentPage.jpeg)"
-  echo $barcodes
+  echo $barcodes && echo "currentPage: $currentPage"
+  
 
   # match the regular expression against the barcodes-string
 
